@@ -1,6 +1,13 @@
-export const calculateDynamicPrice = (basePrice: number, demand: number, supply: number): number => {
-  const demandSupplyRatio = demand / supply;
-  return basePrice * demandSupplyRatio;
+export const calculateDynamicPrice = (
+  basePrice: number,
+  demand: number,
+  supply: number
+): number => {
+  if (supply <= 0 || !isFinite(basePrice) || !isFinite(demand) || !isFinite(supply)) {
+    return basePrice;
+  }
+
+  return basePrice * (demand / supply);
 };
 
 export const calculateCarbonSaved = (energyKWh: number): number => {
